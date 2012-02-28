@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Opensoft Processes and Improvements</title>
+	<title>Symfony2</title>
 	<meta name="viewport" content="width=1024, user-scalable=no">
 	
 	<!-- Replace path with correct path to deck.core.css. -->
@@ -22,43 +22,18 @@
 	<!-- Replace path with correct path to Modernizr file. -->
 	<script src="../deck.js/modernizr.custom.js"></script>
 </head>
+
 <body class="deck-container">
 
 <!-- Create any number of elements with class slide within the container -->
-<section class="slide" id="slide-1">
-
-    <h1>Frameworks...<br /> Tools...<br /> and Processes...<br /> oh my!</h1>
-</section>
-
-<section class="slide" id="slide-2">
-    <h2>Slide 1</h2>
-    <ul>
-        <li>
-            <h2>Code Review</h2>
-            <p>Improving code quality</p>
-        </li>
-        <li>
-            <h2>Continuous Integration and Deployments</h2>
-            <p>Improving agility and mean time to failure</p>
-        </li>
-        <li>
-            <h2>Unit and Functional Testing</h2>
-            <p></p>
-        </li>
-        <li>Symfony2</li>
-        <li>Composer</li>
-    </ul>
-</section>
-
 <section class="slide" id="symfony-intro">
     <h1>Symfony2</h1>
 </section>
 
-
 <section class="slide" id="symfony-what-is-it">
     <h2>Symfony2</h2>
     <blockquote>
-        <p><string>First, </string> Symfony2 is a reusable set of standalone, decoupled, and cohesive PHP components 
+        <p><strong>First, </strong> Symfony2 is a reusable set of standalone, decoupled, and cohesive PHP components
         that solve common web development problems.</p>
     </blockquote>
     <blockquote>
@@ -85,13 +60,12 @@
 </section>
 
 <section class="slide" id="symfony-the-components">
-    <h1>The Components (all 21 of them)</h1>
+    <h1>The Components <br />(all 21 of them)</h1>
 </section>
 
 <section class="slide" id="symfony-component-class-loader">
     <h2>ClassLoader</h2>
     <p>Provides a flexible autoloader that implements the <a href="">PSR-0</a> standard.</p>
-
     <pre>
 require_once __DIR__.'/src/Symfony/Component/ClassLoader/UniversalClassLoader.php';
 
@@ -108,9 +82,7 @@ $loader->registerNamespaces(array(
 $loader->registerPrefixes(array(
     'Twig_' => __DIR__.'/vendor/twig/lib',
 ));
-$loader->register();
-
-    </pre>
+$loader->register();</pre>
     <p>Ships with an APC cached version of the UniversalClassLoader for better performance</p>
 </section>
 
@@ -134,11 +106,10 @@ $console
     ->setCode(function (InputInterface $input, OutputInterface $output) {
         $dir = $input->getArgument('dir');
 
-        $output->writeln(sprintf('Dir listing for <info>%s</info>', $dir));
+        $output->writeln(sprintf('Dir listing for &ltinfo&gt%s&lt/info&gt', $dir));
     })
 ;
-$console->run();
-    </pre>
+$console->run();</pre>
     <p>Support for output coloring, input and output abstractions, validation, automatic help messages... etc.</p>
 </section>
 
@@ -190,8 +161,7 @@ use Symfony\Component\Yaml\Yaml;
 
 $array = Yaml::parse($file);
 
-print Yaml::dump($array);
-    </pre>
+print Yaml::dump($array);</pre>
 </section>
 
 <section class="slide" id="symfony2-component-finder">
@@ -211,8 +181,7 @@ $iterator = $finder
 
 foreach ($iterator as $file) {
     print $file->getRealpath()."\n";
-}
-    </pre>
+}</pre>
     <p>Works with any stream wrapper (like Amazon S3 for instance)</p>
 </section>
 
@@ -229,9 +198,7 @@ if (!$process->isSuccessful()) {
     throw new RuntimeException($process->getErrorOutput());
 }
 
-print $process->getOutput();
-         
-    </pre>
+print $process->getOutput();</pre>
     <p>
         Getting feedback in real time is easy too, just pass an anonymous function to the run()
         method and you will get the output buffer as it becomes available:
@@ -246,8 +213,7 @@ $process->run(function ($type, $buffer) {
     } else {
         echo 'OUT > '.$buffer;
     }
-});
-    </pre>
+});</pre>
 </section>
 
 <section class="slide" id="symfony2-component-domcrawler">
@@ -257,10 +223,9 @@ $process->run(function ($type, $buffer) {
 use Symfony\Component\DomCrawler\Crawler;
 
 $crawler = new Crawler();
-$crawler->addContent('<html><body><p>Hello World!</p></body></html>');
+$crawler->addContent('&lthtml&gt&ltbody&gt&ltp&gtHello World!&lt/p&gt&lt/body&gt&lt/html&gt');
 
-print $crawler->filterXPath('descendant-or-self::body/p')->text();
-    </pre>
+print $crawler->filterXPath('descendant-or-self::body/p')->text();</pre>
 </section>
 
 <section class="slide" id="symfony2-component-cssselector">
@@ -276,10 +241,9 @@ print CssSelector::toXPath('div.item > h4 > a');
 use Symfony\Component\DomCrawler\Crawler;
 
 $crawler = new Crawler();
-$crawler->addContent('<html><body><p>Hello World!</p></body></html>');
+$crawler->addContent('&lthtml&gt&ltbody&gt&ltp&gtHello World!&lt/p&gt&lt/body&gt&lt/html&gt');
 
-print $crawler->filter('body > p')->text();
-    </pre>
+print $crawler->filter('body > p')->text();</pre>
 </section>
 
 <section class="slide" id="symfony2-component-http-foundation">
@@ -290,16 +254,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 $request = Request::createFromGlobals();
-echo $request->getPathInfo();
-    </pre>
+echo $request->getPathInfo();</pre>
     <p>You can also create a request directly, and create and send a response</p>
     <pre>
 $request = Request::create('/?foo=bar', 'GET');
 echo $request->getPathInfo();
 
 $response = new Response('Not Found', 404, array('Content-Type' => 'text/plain'));
-$response->send();
-    </pre>
+$response->send();</pre>
     <p>The Request and Response classes have many other methods that implement the HTTP specification</p>
 </section>
 
@@ -326,8 +288,7 @@ $context->fromRequest(Request::createFromGlobals());
 
 $matcher = new UrlMatcher($routes, $context);
 
-$parameters = $matcher->match('/hello');
-    </pre>
+$parameters = $matcher->match('/hello');</pre>
 </section>
 
 <section class="slide" id="symfony2-component-event-dispatcher">
@@ -343,8 +304,7 @@ $dispatcher->addListener('event_name', function (Event $event) {
     // ...
 });
 
-$dispatcher->dispatch('event_name');
-    </pre>
+$dispatcher->dispatch('event_name');</pre>
 </section>
 
 <section class="slide" id="symfony2-component-dependency-injection">
@@ -364,8 +324,7 @@ $sc
 ;
 $sc->setParameter('foo.class', 'Foo');
 
-$sc->get('foo');
-    </pre>
+$sc->get('foo');</pre>
 </section>
 
 <section class="slide" id="symfony2-component-http-kernel">
@@ -385,8 +344,7 @@ interface HttpKernelInterface
      * @return Response A Response instance
      */
     function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true);
-}
-    </pre>
+}</pre>
     <p>Using this interface makes your code compatible with all frameworks using the Symfony2 components</p>
 </section>
 
@@ -415,8 +373,7 @@ $resolver = new ControllerResolver();
 
 $kernel = new HttpKernel($dispatcher, $resolver);
 
-$kernel->handle($request)->send();
-    </pre>
+$kernel->handle($request)->send();</pre>
 </section>
 
 <section class="slide" id="symfony2-simple-stack-add1">
@@ -425,41 +382,40 @@ $kernel->handle($request)->send();
     <pre>
 $kernel = new HttpKernel($dispatcher, $resolver);
 
-$kernel = new HttpCache($kernel, new Store(__DIR__.'/cache'));
-    </pre>
-</section>
- 
-<section class="slide" id="symfony2-simple-stack-add2">
-    <h2>Make it better...</h2>
-    <p>Want to functional test this small framework?</p>
-    <pre>
+$kernel = new HttpCache($kernel, new Store(__DIR__.'/cache'));</pre>
+    <section class="slide" id="symfony2-simple-stack-add2">
+        <h2>Make it more better... </h2>
+        <p>Want to functional test this small framework?</p>
+        <pre>
 $client = new Client($kernel);
 $crawler = $client->request('GET', '/hello/Richard');
 
-$this->assertEquals('Richard', $crawler->filter('p > span')->text());
-    </pre>
-</section>
- 
-<section class="slide" id="symfony2-simple-stack-add3">
-    <h2>Make it better...</h2>
-    <p>Want nice error pages instead of ugly PHP exceptions?</p>
+$this->assertEquals('Richard', $crawler->filter('p > span')->text());</pre>
+    </section>
 
-    <pre>
+    <section class="slide" id="symfony2-simple-stack-add3">
+        <h2>Make it most better... </h2>
+        <p>Want nice error pages instead of ugly PHP exceptions?</p>
+        <pre>
 $dispatcher->addSubscriber(new ExceptionListener(function (Request $request) {
     $msg = 'Something went wrong! ('.$request->get('exception')->getMessage().')';
 
     return new Response($msg, 500);
-}));
-    </pre>
+}));</pre>
+    </section>
 </section>
- 
+
 
 
 <section class="slide" id="end-credits">
+    <h2>Credits</h2>
     <ul>
-        <li><a href="http://fabien.potencier.org/article/49/what-is-symfony2">What is Symfony2</a></li>
+        <li><a href="http://fabien.potencier.org/article/49/what-is-symfony2">What is Symfony2</a> - Fabien Potencier</li>
+        <li><a href="http://fabien.potencier.org/article/50/create-your-own-framework-on-top-of-the-symfony2-components-part-1">Create your own framework on top of Symfony2 Components</a> - Fabien Potencier</li>
     </ul>
 </section>
+
+
 
 
 <!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
@@ -472,14 +428,14 @@ $dispatcher->addSubscriber(new ExceptionListener(function (Request $request) {
 	<span class="deck-status-total"></span>
 </p>
 
-<form action="." method="get" class="goto-form">
+<form action="../slides" method="get" class="goto-form">
 	<label for="goto-slide">Go to slide:</label>
 	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
 	<datalist id="goto-datalist"></datalist>
 	<input type="submit" value="Go">
 </form>
 
-<a href="." title="Permalink to this slide" class="deck-permalink">#</a>
+<a href="../slides" title="Permalink to this slide" class="deck-permalink">#</a>
 
 <!-- Update these paths to point to the correct files. -->
 <script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>

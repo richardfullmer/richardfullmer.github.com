@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Behat</title>
+	<meta name="viewport" content="width=1024, user-scalable=no">
+	
+	<!-- Replace path with correct path to deck.core.css. -->
+	<link rel="stylesheet" href="../deck.js/core/deck.core.css" type="text/css">
+	
+	<!-- Any other extension CSS files go here. -->
+	<link rel="stylesheet" href="../deck.js/extensions/goto/deck.goto.css">
+	<link rel="stylesheet" href="../deck.js/extensions/menu/deck.menu.css">
+	<link rel="stylesheet" href="../deck.js/extensions/navigation/deck.navigation.css">
+	<link rel="stylesheet" href="../deck.js/extensions/status/deck.status.css">
+	<link rel="stylesheet" href="../deck.js/extensions/hash/deck.hash.css">
+
+
+	<link rel="stylesheet" id="style-theme-link" href="../deck.js/themes/style/web-2.0.css">
+	<link rel="stylesheet" id="transition-theme-link" href="../deck.js/themes/transition/horizontal-slide.css">
+	
+	<!-- Replace path with correct path to Modernizr file. -->
+	<script src="../deck.js/modernizr.custom.js"></script>
+</head>
+<body class="deck-container">
+
+<!-- Create any number of elements with class slide within the container -->
+<section class="slide" id="behat-intro">
+    <h1>Behat</h1>
+</section>
+
+
+<section class="slide" id="brief-description">
+    <h2>What is it?</h2>
+    <p>
+        Behat is a Behavior Driven Development (BDD) tool for use with PHP 5.3.
+    </p>
+    <ul>
+        <li><a href="http://behat.org">Behat</a></li>
+    </ul>
+</section>
+
+
+
+
+
+<!-- Other extension HTML snippets go here, at the bottom of the deck container. -->
+<a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+<a href="#" class="deck-next-link" title="Next">&#8594;</a>
+
+<p class="deck-status">
+	<span class="deck-status-current"></span>
+	/
+	<span class="deck-status-total"></span>
+</p>
+
+<form action="../behat" method="get" class="goto-form">
+	<label for="goto-slide">Go to slide:</label>
+	<input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+	<datalist id="goto-datalist"></datalist>
+	<input type="submit" value="Go">
+</form>
+
+<a href="../behat" title="Permalink to this slide" class="deck-permalink">#</a>
+
+<!-- Update these paths to point to the correct files. -->
+<script src="//ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+<script>window.jQuery || document.write('<script src="../deck.js/jquery-1.7.min.js"><\/script>')</script>
+
+<script src="../deck.js/core/deck.core.js"></script>
+
+<!-- Add any other extension JS files here -->
+<script src="../deck.js/extensions/hash/deck.hash.js"></script>
+<script src="../deck.js/extensions/menu/deck.menu.js"></script>
+<script src="../deck.js/extensions/goto/deck.goto.js"></script>
+<script src="../deck.js/extensions/status/deck.status.js"></script>
+<script src="../deck.js/extensions/navigation/deck.navigation.js"></script>
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+	$(function() {
+		$.deck('.slide');
+	});
+</script>
+</body>
+</html>
